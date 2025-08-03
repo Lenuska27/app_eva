@@ -25,12 +25,12 @@ st.markdown("""
             width: 100%;
             border-radius: 10px;
             margin-bottom: 10px;
-            background-color: #fbeaff;
+            background-color: #6a0dad;
             color: black;
             border: 2px solid #caa4f7;
         }
         .stButton>button:hover {
-            background-color: #e3c6ff;
+            background-color: #4b0082;
             color: black;
         }
         .result-box {
@@ -40,7 +40,7 @@ st.markdown("""
             text-align: center;
             font-size: 20px;
             margin-top: 20px;
-            border: 1px solid #f3d2f7;
+            border: 1px solid #4b0082;
         }
     </style>
 """, unsafe_allow_html=True)
