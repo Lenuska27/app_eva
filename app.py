@@ -1,19 +1,22 @@
-
 import streamlit as st
 import pandas as pd
 import random
 
+# Загружаем Excel-файл
 @st.cache_data
 def load_data():
     return pd.read_excel("eva.xlsx")
 
 df = load_data()
 
-st.set_page_config(page_title="Рандомайзер от Евы 💫", page_icon="💫", layout="centered")
+# Настройки страницы
+st.set_page_config(page_title="Рандомайзер от Вани 💫", page_icon="💫", layout="centered")
 
-st.title("✨ Рандомайзер от Евы ✨")
+# Заголовок
+st.title("✨ Рандомайзер от Вани ✨")
 st.markdown("Выбери, что хочешь получить 👇")
 
+# Стили
 st.markdown("""
     <style>
         .stButton>button {
@@ -42,27 +45,32 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-def get_random_value(column):
-    if column not in df.columns:
-        return "⚠️ Нет такого столбца"
-    values = df[column].dropna().tolist()
-    if not values:
-        return "⚠️ Пустой столбец"
-    return random.choice(values)
+# Функция для случайного выбора
+def get_random_text(column):
+    if column in df.columns:
+        values = df[column].dropna().tolist()
+        if values:
+            return random.choice(values)
+        else:
+            return "⚠️ В этом разделе пока нет данных."
+    else:
+        return "⚠️ Столбец не найден в таблице."
 
+# Кнопки
 col1, col2, col3 = st.columns(3)
 
 with col1:
     if st.button("💖 Комплимент"):
-        result = get_random_value("Комплименты")
-        st.markdown(f"<div class='result-box'>💖 {result}</div>", unsafe_allow_html=True)
+        text = get_random_text("Комплимент")
+        st.markdown(f"<div class='result-box'>💖 {text}</div>", unsafe_allow_html=True)
 
 with col2:
     if st.button("🕺 Действие"):
-        result = get_random_value("Действия")
-        st.markdown(f"<div class='result-box'>🕺 {result}</div>", unsafe_allow_html=True)
+        text = get_random_text("Действие")
+        st.markdown(f"<div class='result-box'>🕺 {text}</div>", unsafe_allow_html=True)
 
 with col3:
     if st.button("❓ Вопрос"):
-        result = get_random_value("Вопросы")
-        st.markdown(f"<div class='result-box'>❓ {result}</div>", unsafe_allow_html=True)
+        text = get_random_text("Вопрос")
+        st.markdown(f"<div class='result-box'>❓ {text}</div>", unsafe_allow_html=True)
+
