@@ -5,7 +5,7 @@ import random
 # Загружаем Excel-файл
 @st.cache_data
 def load_data():
-    return pd.read_excel("eva.xlsx")
+    return pd.read_excel("eva1.xlsx")
 
 df = load_data()
 
